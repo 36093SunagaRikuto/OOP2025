@@ -7,6 +7,15 @@ namespace Exercise02 {
 
             //回数制限
             int count = 0;
+            int nokori = 3;
+
+            Console.WriteLine("***変換アプリ***");
+            Console.WriteLine("1:インチからメートル");
+            Console.WriteLine("2:メートルからインチ");
+
+            int choice = int.Parse(Console.ReadLine());
+            Console.WriteLine($">>>{choice}");
+
 
             //範囲
             int start = int.Parse(Console.ReadLine());
@@ -16,13 +25,16 @@ namespace Exercise02 {
                 if (start < end) {
                     Console.WriteLine($"始め{start} 終わり{end}");
 
-                    //インチからメートルへ
-                    InToMeter(start, end);
+                    if (choice == 1) {
 
-                    Console.WriteLine("\n");
+                        //インチからメートルへ
+                        InToMeter(start, end);
 
-                    //メートルからインチへ
-                    MeterToIn(start, end);
+                    } else {
+
+                        //メートルからインチへ
+                        MeterToIn(start, end);
+                    }
 
                     count = 3;
                 } else {
@@ -32,9 +44,8 @@ namespace Exercise02 {
                     int s = int.Parse(Console.ReadLine());
                     int e = int.Parse(Console.ReadLine());
                     start = s; end = e;
-                    int a = 3;
-                    Console.WriteLine($"残り{a}回");
-                    a = a - 1;
+                    Console.WriteLine($"残り{nokori}回");
+                    nokori -= 1;
 
                 }
             }
