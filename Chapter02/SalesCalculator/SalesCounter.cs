@@ -20,10 +20,10 @@ namespace SalesCalculator{
         public IDictionary<string, int> GetPerStoreSales() {
             var dict = new SortedDictionary<string, int>();
             foreach(Sale sale in _sales) {
-                if (dict.ContainsKey(sale.ProductCategory))
-                    dict[sale.ProductCategory] += sale.Amount;
+                if (dict.ContainsKey(sale.ShopName))
+                    dict[sale.ShopName] += sale.Amount;
                 else
-                    dict[sale.ProductCategory] = sale.Amount;
+                    dict[sale.ShopName] += sale.Amount;
 
             }
             return dict;
@@ -36,7 +36,7 @@ namespace SalesCalculator{
             //ファイルを一気に読み込み
             string[] lines = File.ReadAllLines(filePath);
             //読み込んだ行数分繰り返し
-            foreach (string line in lines) {
+            foreach (var line in lines) {
                 string[] items = line.Split(',');
                 //Saleオブジェクトを生成
                 Sale sale = new Sale() {
