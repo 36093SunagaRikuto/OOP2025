@@ -21,12 +21,12 @@ namespace Exercise01 {
         }
 
         private static void Exercise1(List<int> numbers) {
-            var count = numbers.Exists(n => n % 13 == 0 || n % 91 == 0);
-            if (count) {
+            var count = numbers.Exists(n => n % 8 == 0 || n % 9 == 0);
+            if (count) 
                 Console.WriteLine("存在しています");
-            } else { 
+            else 
                 Console.WriteLine("存在していません");
-            }
+            
         }
 
         private static void Exercise2(List<int> numbers) {
@@ -35,17 +35,23 @@ namespace Exercise01 {
         }
 
         private static void Exercise3(List<int> numbers) {
-            var order = numbers.Where(n => n >= 50);
-            foreach(var count in order) {
+
+            (numbers.Where(n => n >= 50).ToList()).ForEach(n => Console.WriteLine(n));
+
+            /*foreach(var count in numbers.Where(n => n >= 50)) {
                 Console.WriteLine(count);
-            }
+            }*/
         }
 
+
         private static void Exercise4(List<int> numbers) {
-            var select = numbers.Select(n => n * 2);
-            foreach(var count in select) {
+            (numbers.Select(n => n * 2).ToList()).ForEach(n => Console.WriteLine(n));
+
+
+
+            /*foreach(var count in select) {
                 Console.WriteLine(count);
-            }
+            }*/
         }
     }
 }
