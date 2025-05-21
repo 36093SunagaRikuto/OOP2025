@@ -4,28 +4,33 @@ namespace Ramda {
     internal class Program {
         static void Main(string[] args) {
 
-            var numbers = new[] { 5, 3, 9, 8, 7, 5, 8, 1, 0, 5, 10, 4 };
-            Predicate<int> judge =
-                (int n) => {
-                    if (n % 2 == 0)
-                        return true;
-                    else
-                        return false;
+            var cities = new List<string> {
+                "Tokyo",
+                "New Delhi",
+                "Bangkok",
+                "London",
+                "Paris",
+                "Berlin",
+                "Canberra",
+                "Hong kong",
+            };
 
-                };
+            var exists = cities.Exists(s => s[0] == 'A');
+            Console.WriteLine(exists);
 
-            var count = Count(numbers, judge);
-            Console.WriteLine(count);
-        }
+            var name = cities.Find(s => s.Length == 6);
+            Console.WriteLine(name);
 
-        static int Count(int[] numbers, Predicate<int> judge) {
-            var count = 0;
-            foreach(var n in numbers) {
-                if(judge(n) == true) {
-                    count++;
-                }
+            int index = cities.FindIndex(s => s == "Berlin");
+            Console.WriteLine(index);
+
+            var names = cities.FindAll(s => s.Length <= 5);
+            foreach(var s in names) {
+                Console.WriteLine(s);
             }
-            return count;
+
+            var removedCount = cities.RemoveAll(s => s.Contains("on"));
+            Console.WriteLine(removedCount);
         }
     }
 }

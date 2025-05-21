@@ -9,7 +9,7 @@ namespace Exercise02 {
             };
 
             Console.WriteLine("***** 3.2.1 *****");
-            Exercise2_1(cities);
+            //Exercise2_1(cities);
             Console.WriteLine();
 
             Console.WriteLine("***** 3.2.2 *****");
@@ -29,7 +29,7 @@ namespace Exercise02 {
             Console.WriteLine("都市名を入力。空行で終了");
             do {
                 var name = Console.ReadLine();  //入力処理
-                if (string.IsNullOrEmpty(name)) 
+                if (string.IsNullOrEmpty(name))
                     break;
                 int index = names.FindIndex(s => s.Equals(name));
                 Console.WriteLine(index);
@@ -37,17 +37,32 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(List<string> names) {
-        
+            var count = names.Count(n => n.Contains('o'));
+            Console.WriteLine(count);
             //ヒント
-           // names.Count( ここにラムダ式を記述する )
+            // names.Count( ここにラムダ式を記述する )
         }
 
         private static void Exercise2_3(List<string> names) {
-        
+            var selected = names.Where(n => n.Contains('o')).ToArray();
+            foreach(var name in selected) {
+                Console.WriteLine(name);
+            }
+           
+
+
         }
 
         private static void Exercise2_4(List<string> names) {
-        
+            var select = names
+                .Where(n => n[0] == 'B')
+                .Select(n => n.Length);
+
+            foreach (var count in select) {
+                Console.WriteLine(count);
+            }
+
         }
-    }
+    }    
+        
 }

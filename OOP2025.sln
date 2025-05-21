@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ramda", "Chapter03\ラム�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Section04", "Chapter03\Section04\Section04.csproj", "{1CE2D77B-C8C1-4EDC-836B-3C2A385A31E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise01", "Chapter03\演習問題\Exercise01\Exercise01.csproj", "{DC202464-2962-4094-8648-03DE67976089}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{1CE2D77B-C8C1-4EDC-836B-3C2A385A31E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CE2D77B-C8C1-4EDC-836B-3C2A385A31E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CE2D77B-C8C1-4EDC-836B-3C2A385A31E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC202464-2962-4094-8648-03DE67976089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC202464-2962-4094-8648-03DE67976089}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC202464-2962-4094-8648-03DE67976089}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC202464-2962-4094-8648-03DE67976089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,6 +110,7 @@ Global
 		{27EEB132-2120-4689-B57F-EC6A648F49E2} = {3707F3AC-D262-4ED2-9066-E526F1378E33}
 		{96827434-6D81-4D07-B82D-FDAD22BDD051} = {27EEB132-2120-4689-B57F-EC6A648F49E2}
 		{1CE2D77B-C8C1-4EDC-836B-3C2A385A31E2} = {3707F3AC-D262-4ED2-9066-E526F1378E33}
+		{DC202464-2962-4094-8648-03DE67976089} = {8ABA432C-5E43-4A8E-B8AE-3E6E727B80C3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57A57A27-F23B-47BE-8DCD-A6E02D011F7F}

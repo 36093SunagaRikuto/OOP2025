@@ -1,0 +1,51 @@
+﻿
+namespace Exercise01 {
+    internal class Program {
+        static void Main(string[] args) {
+            var numbers = new List<int> { 12, 87, 94, 14, 53, 20, 40, 35, 76, 91, 31, 17, 48 };
+
+            // 3.1.1
+            Exercise1(numbers);
+            Console.WriteLine("-----");
+
+            // 3.1.2
+            Exercise2(numbers);
+            Console.WriteLine("-----");
+
+            // 3.1.3
+            Exercise3(numbers);
+            Console.WriteLine("-----");
+
+            // 3.1.4
+            Exercise4(numbers);
+        }
+
+        private static void Exercise1(List<int> numbers) {
+            var count = numbers.Exists(n => n % 13 == 0 || n % 91 == 0);
+            if (count) {
+                Console.WriteLine("存在しています");
+            } else { 
+                Console.WriteLine("存在していません");
+            }
+        }
+
+        private static void Exercise2(List<int> numbers) {
+            numbers.ForEach(s => Console.WriteLine(s / 2.0));
+            
+        }
+
+        private static void Exercise3(List<int> numbers) {
+            var order = numbers.Where(n => n >= 50);
+            foreach(var count in order) {
+                Console.WriteLine(count);
+            }
+        }
+
+        private static void Exercise4(List<int> numbers) {
+            var select = numbers.Select(n => n * 2);
+            foreach(var count in select) {
+                Console.WriteLine(count);
+            }
+        }
+    }
+}
