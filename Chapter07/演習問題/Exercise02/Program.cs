@@ -36,7 +36,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise1(List<Book> books) {
-            var wanderful = books.Where(n => n.Title == "ワンダフル・C#ライフ").First();
+            var wanderful = books.FirstOrDefault(n => n.Title == "ワンダフル・C#ライフ");
             Console.WriteLine($"タイトル:{wanderful.Title} 価格:{wanderful.Price}円 ページ数:{wanderful.Pages}ページ");
         }
 
