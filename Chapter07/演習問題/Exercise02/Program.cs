@@ -51,7 +51,8 @@ namespace Exercise02 {
         }
 
         private static void Exercise4(List<Book> books) {
-            Console.WriteLine(books.Where(x => x.Price >= 4000).First().Title);
+            Console.WriteLine(books.Where(x => x.
+            Price >= 4000).First().Title);
         }
 
         private static void Exercise5(List<Book> books) {
@@ -69,7 +70,7 @@ namespace Exercise02 {
         private static void Exercise7(List<Book> books) {
             var last = books.Where(n => n.Title.Contains("C#") && n.Pages <= 500);
             foreach (var unko in last)
-                Console.WriteLine("タイトル" + unko.Title);
+                Console.WriteLine("タイトル:" + unko.Title);
         }
     }
 }
