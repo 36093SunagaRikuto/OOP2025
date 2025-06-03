@@ -1,4 +1,7 @@
 ﻿
+using System.Text;
+using System.Text.RegularExpressions;
+
 namespace Exercise03 {
     internal class Program {
         static void Main(string[] args) {
@@ -34,7 +37,18 @@ namespace Exercise03 {
 
         private static void Exercise3(string text) {
 
+            StringBuilder sb = new StringBuilder();
             string[] unko = text.Split();
+            foreach(var toto in unko) {
+                sb.Append(toto + " ");
+                
+
+            }
+           
+            Console.WriteLine(sb + ";");
+
+                  
+
         }
 
         private static void Exercise4(string text) {
