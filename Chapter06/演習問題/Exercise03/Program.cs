@@ -23,6 +23,9 @@ namespace Exercise03 {
             Console.WriteLine("6.3.5");
             Exercise5(text);
 
+            Console.WriteLine("6.3.99");
+            Exercise6(text);
+
         }
 
         private static void Exercise1(string text) {
@@ -59,6 +62,36 @@ namespace Exercise03 {
             var select = text.Split();
             foreach(var unko in  select.Where(c => c.Length <= 4)) {
                 Console.WriteLine(unko);
+            }
+        }
+
+        private static void Exercise6(string text) {
+            /*char tan = 'a';
+            var te = text.ToLower().Split().ToList();
+            for (int i = 0; i < 26; i++) {
+                int count = 0;
+                foreach (var cos in text) {
+                    
+                    if (cos.Equals(tan)) {
+                        count++;
+                    }
+                    
+                }
+                Console.WriteLine($"{tan}:{count}");
+                tan++;
+           
+                
+            }*/
+
+            var str = text.ToLower().Replace(" ","");
+
+            var AlphDicCount = Enumerable.Range('a', 26).ToDictionary(num => ((char)num).ToString(), num => 0);
+            
+            foreach(var alph in str) {
+                AlphDicCount[alph.ToString()]++;
+            }
+            foreach(var item in AlphDicCount) {
+                Console.WriteLine($"{item.Key}:{item.Value}");
             }
         }
 
