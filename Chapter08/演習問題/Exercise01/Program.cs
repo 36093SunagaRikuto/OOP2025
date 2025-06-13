@@ -23,10 +23,11 @@ namespace Exercise01 {
                     else
                         ddd.Add(item, 1);
 
+            
             }
-            ddd.OrderBy(x => x.Key);
-            foreach(var dic in ddd) {
-                Console.WriteLine($"{ddd.Keys}: {ddd.Values}");
+            
+            foreach(var dic in ddd.OrderBy(x => x.Key)) {
+                Console.WriteLine($"{dic.Key}:{dic.Value}");
             }
             
             
@@ -34,7 +35,18 @@ namespace Exercise01 {
         }
 
         private static void Exercise2(string text) {
-            
+
+            var sd = new SortedDictionary<char, int>();   
+            foreach(var nal in text.ToUpper()) {
+                if ('A' <= nal && nal <= 'Z')
+                    if (sd.ContainsKey(nal))
+                        sd[nal]++;
+                    else
+                        sd.Add(nal, 1);
+            }
+            foreach (var dic in sd) {
+                Console.WriteLine($"{dic.Key}:{dic.Value}");
+            }
         }
     }
 }
