@@ -5,10 +5,16 @@
             // コンストラクタの呼び出し
             var abbrs = new Abbreviations();
 
+            
+
+
             // Addメソッドの呼び出し例
             abbrs.Add("IOC", "国際オリンピック委員会");
             abbrs.Add("NPT", "核兵器不拡散条約");
 
+
+            int count = abbrs.coun
+            
             // Getメソッドの利用例
             var names = new[] { "WHO", "FIFA", "NPT", };
             foreach (var name in names) {
@@ -35,6 +41,9 @@
             foreach (var (key, value) in abbrs.FindAll("国際")) {
                 Console.WriteLine($"{key}={value}");
             }
+            Console.WriteLine();
+
+            Console.WriteLine();
             Console.WriteLine();
         }
     }

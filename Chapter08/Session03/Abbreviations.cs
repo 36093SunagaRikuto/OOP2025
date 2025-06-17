@@ -10,6 +10,18 @@ public class Abbreviations {
             .ToDictionary(x => x[0], x => x[1]);
     }
 
+    //8.2.1
+    public int Count => _dict.Count;
+
+    //8.2.2
+    public bool Remove(string name) => _dict.Remove(name);
+
+    public IEnumerable<KeyValuePair<string, string>> GetAll() {
+
+        return _dict;
+    }
+
+
     // 要素を追加
     public void Add(string abbr, string japanese) =>
         _dict[abbr] = japanese;
@@ -30,4 +42,6 @@ public class Abbreviations {
             }
         }
     }
-}
+
+    
+}       
