@@ -13,7 +13,7 @@
             abbrs.Add("NPT", "核兵器不拡散条約");
 
 
-            int count = abbrs.coun
+            int count = abbrs.GetHashCode();
             
             // Getメソッドの利用例
             var names = new[] { "WHO", "FIFA", "NPT", };
