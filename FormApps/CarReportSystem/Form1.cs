@@ -11,7 +11,9 @@ namespace CarReportSystem {
 
 
         //設定クラスのインスタンスを
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
+        
+
 
 
         public Form1() {
@@ -272,10 +274,11 @@ namespace CarReportSystem {
                     using (var reader = XmlReader.Create("settings.xml")) {
                         var serializer = new XmlSerializer(typeof(Settings));
                         var novel = serializer.Deserialize(reader) as Settings;
-                        //BackColor = Color.FromArgb(novel.MainFormBackColor);
-                        //設定クラスのインスタンスにも現在の設定色を設定
-                        settings.MainFormBackColor = BackColor.ToArgb();
-                        
+                        if (novel != null) {
+                            BackColor = Color.FromArgb(novel.MainFormBackColor);
+                            //設定クラスのインスタンスにも現在の設定色を設定
+                            settings.MainFormBackColor = BackColor.ToArgb();
+                        }
                     }
 
 
