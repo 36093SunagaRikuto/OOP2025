@@ -1,10 +1,18 @@
 using System.ComponentModel;
+using System.Drawing.Imaging;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         BindingList<CarReport> listCarReports = new BindingList<CarReport>();
         BindingList<String> listAuthor = new BindingList<string>();
+
+
+        //設定クラスのインスタンスを
+        Settings settings = new Settings();
+
 
         public Form1() {
             InitializeComponent();
@@ -39,23 +47,23 @@ namespace CarReportSystem {
 
             tsslbMessage.Text = String.Empty;
             if (cbAuthor.Text == String.Empty || cbCarName.Text == String.Empty) return;
-                var carReport = new CarReport {
+            var carReport = new CarReport {
 
 
-                    Date = dtDate.Value,
-                    Author = cbAuthor.Text,
-                    Maker = GetRadioButtonMaker(),
-                    CarName = cbCarName.Text,
-                    Report = tbReport.Text,
-                    Picture = pbPicture.Image
+                Date = dtDate.Value,
+                Author = cbAuthor.Text,
+                Maker = GetRadioButtonMaker(),
+                CarName = cbCarName.Text,
+                Report = tbReport.Text,
+                Picture = pbPicture.Image
 
-                };
-                listCarReports.Add(carReport);
-                SetCbAuthor(cbAuthor.Text);
-                SetCbCarName(cbCarName.Text);
-                InputItemsAllClear();
-            }
-        
+            };
+            listCarReports.Add(carReport);
+            SetCbAuthor(cbAuthor.Text);
+            SetCbCarName(cbCarName.Text);
+            InputItemsAllClear();
+        }
+
 
         private void SetCbCarName(string carname) {
 
@@ -195,9 +203,9 @@ namespace CarReportSystem {
                 dgvRecord.Refresh();
             }
         }
-         private void ファイルFToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void ファイルFToolStripMenuItem_Click(object sender, EventArgs e) {
 
-                }
+        }
         private void tbReport_TextChanged(object sender, EventArgs e) {
 
         }
@@ -219,21 +227,68 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
 
             //ColorDialog cd = new ColorDialog();
-            Form1 f1 = new Form1();
+            //Form1 f1 = new Form1();
             if (cdColor.ShowDialog() == DialogResult.OK) {
 
 
                 BackColor = cdColor.Color;
 
+
+                try {
+                    //設定ファイルへ保存
+                    
+                    using (var setcolor = XmlWriter.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(settings.GetType());
+                    serializer.Serialize(setcolor, settings);
+                    
+                    }
+                }
+                catch (Exception) {
+                    tsslbMessage.Text = "ファイル書き出しに失敗しました。" ;
+                    throw;
+                }
+                
+
+                
             }
+
         }
 
-       
+
 
         private void Form1_Load(object sender, EventArgs e) {
             //交互に色を設定
             InputItemsAllClear();
-            dgvRecord.DefaultCellStyle.BackColor = Color.White;
+            dgvRecord.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            dgvRecord.DefaultCellStyle.BackColor = Color.LightGray;
+
+
+            if (File.Exists("settings.xml")) {
+                //設定ファイルを読み込み背景色を設定する（逆シリアル化）
+                //P286を参考にするファイル名
+
+                try {
+                    //設定ファイルが存在する場合、逆シリアル化で読み込む
+                    using (var reader = XmlReader.Create("settings.xml")) {
+                        var serializer = new XmlSerializer(typeof(Settings));
+                        var novel = serializer.Deserialize(reader) as Settings;
+                        //BackColor = Color.FromArgb(novel.MainFormBackColor);
+                        //設定クラスのインスタンスにも現在の設定色を設定
+                        settings.MainFormBackColor = BackColor.ToArgb();
+                        
+                    }
+
+
+                }
+                catch (Exception ex) {
+                    tsslbMessage.Text = "設定ファイルの読み込みに失敗しました。";
+                    MessageBox.Show(ex.Message);
+                    throw;
+                }
+
+            } else {
+                tsslbMessage.Text = "設定ファイルが見つかりません";
+            }
 
         }
 
@@ -252,13 +307,16 @@ namespace CarReportSystem {
                     using (FileStream fs = File.Open(
                         ofdPicFileOpen.FileName, FileMode.Open, FileAccess.Read)) {
 
-                        cbAuthor.Items.Clear();
-                        cbCarName.Items.Clear();
+                       
                         listCarReports = (BindingList<CarReport>)bf.Deserialize(fs);
                         dgvRecord.DataSource = listCarReports;
 
+
+                        cbAuthor.Items.Clear();
+                        cbCarName.Items.Clear();
+
                         //コンボボックスに登録
-                        foreach(var report in listCarReports) {
+                        foreach (var report in listCarReports) {
                             SetCbAuthor(report.Author);
                             SetCbCarName(report.CarName);
                         }
@@ -268,7 +326,7 @@ namespace CarReportSystem {
                     }
                 }
                 catch (Exception) {
-
+                    //例外えらー処理
                     tsslbMessage.Text = "ファイルの形式が違います。";
 
 
@@ -299,11 +357,32 @@ namespace CarReportSystem {
         }
 
         private void sfdReportFSave_FileOk(object sender, CancelEventArgs e) {
-           
+
         }
 
         private void 保存ToolStripMenuItem_Click(object sender, EventArgs e) {
             reportSaveFile();
+        }
+
+        //フォームが閉じたら呼ばれる
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+            //設定ファイルへ色情報を保存する処理（シリアル化）
+            //ファイル名settings.xml
+            try {
+                
+                using (var setcolor = XmlWriter.Create("settings.xml")) {
+                    var serializer = new XmlSerializer(settings.GetType());
+                    serializer.Serialize(setcolor, settings);
+                }
+
+            }
+            catch (Exception ex) {
+                tsslbMessage.Text = "設定ファイルの書き出しに失敗しました。";
+                MessageBox.Show(ex.Message);
+                throw;
+            }
+            
+
         }
     }
 }

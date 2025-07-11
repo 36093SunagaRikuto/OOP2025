@@ -488,6 +488,7 @@
             MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "試乗レポート管理システム";
+            FormClosed += Form1_FormClosed;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)rbOther).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgvRecord).EndInit();
