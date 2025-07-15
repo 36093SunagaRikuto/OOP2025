@@ -278,6 +278,8 @@ namespace CarReportSystem {
                             BackColor = Color.FromArgb(novel.MainFormBackColor);
                             //設定クラスのインスタンスにも現在の設定色を設定
                             settings.MainFormBackColor = BackColor.ToArgb();
+
+                            throw new InvalidOperationException("設定ファイルの読み込みに失敗しました。");
                         }
                     }
 
