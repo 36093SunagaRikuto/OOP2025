@@ -20,10 +20,9 @@ namespace ColorChecker
     /// <summar>
     /// MainWindow.xml の相互作用口ジック
     /// </summar>
-    public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
+    public partial class MainWindow : Window{
+        MyColor currentcolor;//現在の色
+        public MainWindow(){
             InitializeComponent();
             DataContext = GetColorList();
 
