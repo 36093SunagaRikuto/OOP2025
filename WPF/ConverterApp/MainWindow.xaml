@@ -13,8 +13,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Name="ImperialUnitToMetoric" Margin="4" Width="40" Content="▲ﾄﾅﾐﾁｷﾁｽﾆﾉﾅｶﾗ"/>
-            <Button Name="MetricToImperialUnit" Margin="4" Width="40" Content="▼"/>
+            <Button Name="ImperialUnitToMetoric" Margin="4" Width="40" Content="▲" Click="ImperialUnitToMetoric_Click"/>
+            <Button Name="MetricToImperialUnit" Margin="4" Width="40" Content="▼" Click="MetricToImperialUnit_Click"/>
             
         </StackPanel>
 
