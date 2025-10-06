@@ -42,7 +42,7 @@ namespace ColorChecker
 
             colorArea.Background = new SolidColorBrush(Color.FromRgb(r,g,b));
             if (itemname() == "") return;
-            combob.Text = itemname();
+            //combob.Text = itemname();
 
         }
 
@@ -59,15 +59,17 @@ namespace ColorChecker
             
 
             string sss = itemname();
-            foreach ( var item in Stocklb.Items) {
-                if (((string)item).Contains(sss)) {
-                    return;
+            if (sss != null) {
+                foreach (var item in Stocklb.Items) {
+                    if (((string)item).Contains(sss)) {
+                        return;
+                    }
                 }
             }
             MyColor a = new MyColor() { Color = col, Name = itemname() };
 
-            //Stocklb.Items.Add($"{itemname()}\n  R:{(int)rSlider.Value}, G:{(int)gSlider.Value}, B:{(int)bSlider.Value}");
-            Stocklb.Items.Add(a.Name);
+            Stocklb.Items.Add(a.Name ?? $"{itemname()}\n  R:{(int)rSlider.Value}, G:{(int)gSlider.Value}, B:{(int)bSlider.Value}");
+            //Stocklb.Items.Add(a.Name);
             
 
             
@@ -107,7 +109,7 @@ namespace ColorChecker
                 if (it.Color.R == rSlider.Value && it.Color.G == gSlider.Value && it.Color.B == bSlider.Value)
                     return it.Name;
             }
-            return "";
+            return  null;
         }
 
         private Color getcolor(string colorname) {

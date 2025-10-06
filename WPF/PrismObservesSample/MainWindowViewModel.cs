@@ -9,7 +9,7 @@ namespace PrismObservesSample
     internal class MainWindowViewModel : BindableBase
     {
         public MainWindowViewModel() {
-            
+              
         }
 
 
