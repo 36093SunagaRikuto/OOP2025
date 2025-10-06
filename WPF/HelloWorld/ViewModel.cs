@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 namespace HelloWorld{
     class ViewModel : BindableBase{
         public ViewModel() {
-            ChangeMessageCommand = new DelegateCommand(
-                () => GreetingMessage = "Bye-bye world");
+            ChangeMessageCommand = new DelegateCommand<string>(
+                (par) => GreetingMessage = par,
+                (par) => GreetingMessage != par)
+                .ObservesProperty(() => GreetingMessage);
         }
         private string _greetingMessage = "Hello, World!";
 
@@ -19,8 +21,15 @@ namespace HelloWorld{
             set => SetProperty(ref _greetingMessage, value);
             
         }
+        //private bool _canChangeMessage = true;
+        //public bool CanChangeMessage {
+        //    get => _canChangeMessage;
+        //    private set => SetProperty(ref _canChangeMessage, value);
+        //}
 
-        public DelegateCommand ChangeMessageCommand { get; }
+        public string NewMessage1{ get; } = "Bye-bye world";
+        public string NewMessage2 { get; } = "Long time no see, world!";
+        public DelegateCommand<string> ChangeMessageCommand { get; }
 
        
     }

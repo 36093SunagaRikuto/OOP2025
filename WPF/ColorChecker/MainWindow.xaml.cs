@@ -41,6 +41,8 @@ namespace ColorChecker
             byte b = (byte)bSlider.Value;
 
             colorArea.Background = new SolidColorBrush(Color.FromRgb(r,g,b));
+            if (itemname() == "") return;
+            combob.Text = itemname();
 
         }
 
