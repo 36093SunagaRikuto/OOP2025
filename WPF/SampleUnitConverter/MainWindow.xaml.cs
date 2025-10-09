@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PrismObservesSample;
+namespace SampleUnitConverter;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
@@ -19,9 +19,5 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-    }
-
-    private void TextBox_TextChanged(object sender, TextChangedEventArgs e) {
-
     }
 }

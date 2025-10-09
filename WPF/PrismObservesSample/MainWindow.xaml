@@ -21,7 +21,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" Grid.Column="0" Height="30" Margin="5" Text="{Binding input1}"/>
+        <TextBox Grid.Row="0" Grid.Column="0" Height="30" Margin="5" Text="{Binding input1}" TextChanged="TextBox_TextChanged"/>
         <TextBlock Grid.Row="0" Grid.Column="1" Height="30" Margin="5"
                    Text="+" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
         <TextBox Grid.Row="0" Grid.Column="2" Height="30" Margin="5" Text="{Binding input2}"/>

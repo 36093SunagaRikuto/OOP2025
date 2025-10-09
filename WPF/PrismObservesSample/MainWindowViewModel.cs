@@ -9,7 +9,19 @@ namespace PrismObservesSample
     internal class MainWindowViewModel : BindableBase
     {
         public MainWindowViewModel() {
-              
+            SumCommand = new DelegateCommand(ExcuteSum);
+            
+        }
+        public DelegateCommand SumCommand { get; }
+
+        //足し算の処理
+        private void ExcuteSum() {
+            result = (int.Parse(input1) + int.Parse(input2)).ToString();
+        }
+
+        //足し算を実行できるか
+        private bool canExcuteSum() {
+            return int.TryParse(input1, out var a) && int.TryParse(input2, out var b);
         }
 
 
@@ -21,15 +33,15 @@ namespace PrismObservesSample
 
         public string input1 {
             get => _input1;
-            set;
+            set => SetProperty(ref _input1, value);
         }
         public string input2 {
             get => _input2;
-            set;
+            set => SetProperty(ref _input2, value);
         }
         public string result {
             get => _result;
-            set;
+            set => SetProperty(ref _result, value);
         }
 
         

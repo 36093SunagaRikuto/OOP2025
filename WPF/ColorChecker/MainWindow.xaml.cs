@@ -39,10 +39,11 @@ namespace ColorChecker
             byte r = (byte)rSlider.Value;
             byte g = (byte)gSlider.Value;
             byte b = (byte)bSlider.Value;
+            slidercombo();
 
             colorArea.Background = new SolidColorBrush(Color.FromRgb(r,g,b));
             if (itemname() == "") return;
-            //combob.Text = itemname();
+            
 
         }
 
@@ -56,19 +57,25 @@ namespace ColorChecker
             ////Stocklb.Items.Add($"{col}");
             //}
 
-            
-
-            string sss = itemname();
-            if (sss != null) {
-                foreach (var item in Stocklb.Items) {
-                    if (((string)item).Contains(sss)) {
-                        return;
-                    }
-                }
-            }
             MyColor a = new MyColor() { Color = col, Name = itemname() };
 
-            Stocklb.Items.Add(a.Name ?? $"{itemname()}\n  R:{(int)rSlider.Value}, G:{(int)gSlider.Value}, B:{(int)bSlider.Value}");
+            string sss = itemname();
+            
+                foreach (var item in Stocklb.Items) {
+                    if (sss != null) {
+                        if (((string)item).Contains(a.Name)) {
+                            return;
+                        }
+                    }
+                    if (((string)item).Contains($"R:{(int)rSlider.Value},G:{(int)gSlider.Value},B:{(int)bSlider.Value}")) {
+                            return;
+                    }
+                }
+            
+
+            
+
+            Stocklb.Items.Add(a.Name ?? $"R:{(int)rSlider.Value},G:{(int)gSlider.Value},B:{(int)bSlider.Value}");
             //Stocklb.Items.Add(a.Name);
             
 
@@ -78,7 +85,7 @@ namespace ColorChecker
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             //コンポボックヌから色を選択
 
-
+            if (combob.SelectedIndex == -1) return;
             var comboselectmycolor = (MyColor)((ComboBox)sender).SelectedItem;
             setslidervalued(comboselectmycolor.Color);//スライダ一を設定
 
@@ -93,13 +100,23 @@ namespace ColorChecker
 
         private void Stocklb_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             //リストボックスから選沢
-            var unko = Stocklb.Items[Stocklb.SelectedIndex];
+            var anko = (string)Stocklb.Items[Stocklb.SelectedIndex];
+            
 
-            rSlider.Value = getcolor((string)unko).R;
-            gSlider.Value = getcolor((string)unko).G;
-            bSlider.Value = getcolor((string)unko).B;
-            combob.Text = (string)unko;
-            // setslidervalued(unko.Color);
+            if (anko.Contains(',')) {
+                string[] parts = anko.ToString().Split(',');
+                rSlider.Value = int.Parse(parts[0].Split(':')[1].Trim());
+                gSlider.Value = int.Parse(parts[1].Split(':')[1].Trim());
+                bSlider.Value = int.Parse(parts[2].Split(':')[1].Trim());
+                combob.SelectedIndex = -1;
+
+            } else {
+                rSlider.Value = getcolor((string)anko).R;
+                gSlider.Value = getcolor((string)anko).G;
+                bSlider.Value = getcolor((string)anko).B;
+                combob.Text = (string)anko;
+            }
+            // setslidervalued(anko.Color);
 
         }
 
@@ -122,7 +139,18 @@ namespace ColorChecker
         }
 
         private void allclear_Click(object sender, RoutedEventArgs e) {
-           //Stocklb.Items.Clear();
+           Stocklb.Items.Clear();
         }
+
+        private void slidercombo() {
+            if (itemname() is null) {
+                combob.SelectedIndex = -1;
+
+            } else {
+                Color col = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
+                combob.Text = itemname();
+            }
+        }
+
     }
 }
