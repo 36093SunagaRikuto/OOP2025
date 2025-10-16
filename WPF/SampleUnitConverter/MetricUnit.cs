@@ -25,7 +25,7 @@ namespace SampleUnitConverter
         /// <param name="value"></param>変換する値
         /// <returns></returns>変換した値
 
-        public double FromImperialUnit(MetricUnit unit, double value) {
+        public double FromImperialUnit(ImperialUnit unit, double value) {
             return (value * unit.Coefficient) * 25.4 / Coefficient;
         }
     }
