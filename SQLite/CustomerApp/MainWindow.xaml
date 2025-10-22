@@ -1,0 +1,60 @@
+﻿<Window x:Class="CustomerApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomerApp"
+        mc:Ignorable="d"
+        Title="顧客管理アプリケーション" Height="600" Width="300">
+    <Grid>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="名前" Width="50" Height="15" Margin="0,5,0,0"/>
+                <TextBox x:Name="Name" Width="230" Height="15" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="電話番号" Width="50" Height="15" Margin="0,5,0,0"/>
+                <TextBox x:Name="Phone" Width="230" Height="15" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="住所" Width="50" Height="15" Margin="0,5,0,0"/>
+                <TextBox x:Name="Address" Width="230" Height="15" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Name="gbt" Content="画像" HorizontalAlignment="Left" Height="80" Width="60" Margin="0,5,0,0" Click="gbt_Click"/>
+                <Button Name="imagedelete" Content="削除" Margin="0,5,0,0" Click="imagedelete_Click"/>
+                <Image x:Name="picture" AllowDrop="False" Width="100" Margin="0,5,0,0" MouseLeftButtonDown="picture_MouseLeftButtonDown">
+                    <Image.RenderTransform>
+                        <ScaleTransform x:Name="stmax"/>
+                    </Image.RenderTransform>
+                </Image>
+                
+            </StackPanel>
+            
+            <Button Name="save" Content="Save" Width="290" Margin="0,5,0,0" Click="save_Click"/>
+            <Button Name="delete" Content="Delete" Width="290" Margin="0,5,0,0" Click="delete_Click"/>
+            <Button Name="update" Content="Update" Width="290" Margin="0,5,0,0"/>
+            <!--//追加機能用に開けておく-->
+            <TextBox x:Name="resorce" Margin="0,5,0,0" Height="30"/>
+            <ListView Margin="0,5,0,0" Height="600" Name="viewview">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
+                            <TextBlock Text="{Binding Address}" Foreground="Green"/>
+                            <TextBlock Text="{Binding Picture}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                
+            </ListView>
+            
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>
