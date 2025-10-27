@@ -5,13 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerApp"
         mc:Ignorable="d"
-        Title="顧客管理アプリケーション" Height="600" Width="300">
+        Title="顧客管理アプリケーション" Height="600" Width="900">
     <Grid>
+        
+
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="名前" Width="50" Height="15" Margin="0,5,0,0"/>
-                <TextBox x:Name="Name" Width="230" Height="15" Margin="0,5,0,0"/>
+                <TextBlock Text="検索" Width="50" Height="20" HorizontalAlignment="Center" FontSize=" 15"/>
+                <TextBox x:Name="Searchtb" Height="20" Width="500" HorizontalAlignment="Center" FontSize="15" TextChanged="SearchTextBox_TextChanged" />
             </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="名前" Width="50" Height="15" Margin="0,5,0,0"/>
+                <TextBox x:Name="Name" Width="230" Height="15" Margin="0,5,0,0" FontSize="11"/>
+                <Button Name="save" Content="保存" Width="90" Margin="5,5,0,0" Click="save_Click" RenderTransformOrigin="1.09,-4.106"/>
+                <Button Name="delete" Content="削除" Width="90" Margin="0,5,0,0" Click="delete_Click"/>
+                <Button Name="update" Content="更新" Width="90" Margin="0,5,0,0" Click="update_Click"/>
+
+            </StackPanel>
+
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="電話番号" Width="50" Height="15" Margin="0,5,0,0"/>
@@ -25,21 +37,19 @@
 
             <StackPanel Orientation="Horizontal">
                 <Button Name="gbt" Content="画像" HorizontalAlignment="Left" Height="80" Width="60" Margin="0,5,0,0" Click="gbt_Click"/>
-                <Button Name="imagedelete" Content="削除" Margin="0,5,0,0" Click="imagedelete_Click"/>
                 <Image x:Name="picture" AllowDrop="False" Width="100" Margin="0,5,0,0" MouseLeftButtonDown="picture_MouseLeftButtonDown">
                     <Image.RenderTransform>
                         <ScaleTransform x:Name="stmax"/>
                     </Image.RenderTransform>
                 </Image>
-                
+
             </StackPanel>
-            
-            <Button Name="save" Content="Save" Width="290" Margin="0,5,0,0" Click="save_Click"/>
-            <Button Name="delete" Content="Delete" Width="290" Margin="0,5,0,0" Click="delete_Click"/>
-            <Button Name="update" Content="Update" Width="290" Margin="0,5,0,0"/>
+
+
+
             <!--//追加機能用に開けておく-->
-            <TextBox x:Name="resorce" Margin="0,5,0,0" Height="30"/>
-            <ListView Margin="0,5,0,0" Height="600" Name="viewview">
+
+            <ListView Margin="0,5,0,0" Height="600" Name="viewview" SelectionChanged="viewview_SelectionChanged_1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -50,11 +60,10 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
+
             </ListView>
-            
+
         </StackPanel>
-        
         
     </Grid>
 </Window>
