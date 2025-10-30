@@ -32,13 +32,21 @@ public partial class MainWindow : Window
 
     private void save_Click(object sender, RoutedEventArgs e) {
         MemoryStream ms = new MemoryStream();
+        var itsource = picture.Source as BitmapSource;
+        if (itsource == null) return;
+        var encoder = new PngBitmapEncoder();
+        encoder.Frames.Add(BitmapFrame.Create(itsource));
+        var stream = new MemoryStream();
+        encoder.Save(stream);
+        
+
         var customer = new Customer {
             Name = Name.Text,
             Phone = Phone.Text,
             Address = Address.Text,
-            Picture = File.ReadAllBytes(openfile.FileName)
+            Picture = stream.ToArray()
         };
-
+        
         using (var conect = new SQLiteConnection(App.databasePath)) {
             conect.CreateTable<Customer>();
             conect.Insert(customer);
@@ -46,9 +54,10 @@ public partial class MainWindow : Window
         Name.Text = null;
         Phone.Text = null;
         Address.Text = null;
-
-        
+        picture.Source = null;
+        ReadDB();
     }
+
 
     private void gbt_Click(object sender, RoutedEventArgs e) {
         
@@ -67,10 +76,8 @@ public partial class MainWindow : Window
            
             picture.Source = bit;
 
-        } else {
-            MessageBox.Show("なにいってんのかいしてんのこうかな");
         }
-        
+        ReadDB();
     }
 
 
@@ -95,15 +102,30 @@ public partial class MainWindow : Window
                
             }
         }
+        ReadDB();
     }
 
     private void viewview_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         if (viewview.SelectedItem is null) return;
         var item = viewview.SelectedItem as Customer;
-        Name.Text = item.Name ?? "こちらはnullです";
-        Phone.Text = item.Phone;
-        Address.Text = item.Address;
+        using (MemoryStream ms = new MemoryStream(item.Picture)) {
+            BitmapImage bit = new BitmapImage();
+            try {
+                bit.BeginInit();
+                bit.CacheOption = BitmapCacheOption.OnLoad;
+                bit.StreamSource = ms;
+                bit.EndInit();
+            }
+            catch {
+                bit = null;
+            }
 
+
+            Name.Text = item.Name ?? "こちらはnullです";
+            Phone.Text = item.Phone;
+            Address.Text = item.Address;
+            picture.Source = bit;
+        }
     }
 
     private void ReadDB() {
@@ -121,18 +143,32 @@ public partial class MainWindow : Window
     }
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
-        var search = _customer.Where(p => p.Name.Contains(Searchtb.Name));
+        var search = _customer.Where(p => p.Name.Contains(Searchtb.Text));
 
         viewview.ItemsSource = search;
+        
     }
 
     private void viewview_SelectionChanged_1(object sender, SelectionChangedEventArgs e) {
         if (viewview.SelectedItem is null) return; 
         var item = viewview.SelectedItem as Customer;
+        MemoryStream ms = new MemoryStream(item.Picture);
+        BitmapImage? bit = new BitmapImage();
+        try {
+            bit.BeginInit();
+            bit.CacheOption = BitmapCacheOption.OnLoad;
+            bit.StreamSource = ms;
+            bit.EndInit();
+        }
+        catch {
+            bit = null;
+        }
+
         Name.Text = item.Name;
         Phone.Text = item.Phone;
         Address.Text = item.Address;
-
+        picture.Source = bit;
+        
     }
 
     private void update_Click(object sender, RoutedEventArgs e) {
@@ -151,7 +187,8 @@ public partial class MainWindow : Window
             };
             connection.Update(customer);
 
-            ReadDB();
+          
         }
+        ReadDB();
     }
 }

@@ -12,12 +12,12 @@
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="検索" Width="50" Height="20" HorizontalAlignment="Center" FontSize=" 15"/>
-                <TextBox x:Name="Searchtb" Height="20" Width="500" HorizontalAlignment="Center" FontSize="15" TextChanged="SearchTextBox_TextChanged" />
+                <TextBox x:Name="Searchtb"  Width="500" HorizontalAlignment="Center" FontSize="15" TextChanged="SearchTextBox_TextChanged" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="名前" Width="50" Height="15" Margin="0,5,0,0"/>
-                <TextBox x:Name="Name" Width="230" Height="15" Margin="0,5,0,0" FontSize="11"/>
+                <TextBox x:Name="Name" Width="230"  Margin="0,5,0,0" FontSize="11"/>
                 <Button Name="save" Content="保存" Width="90" Margin="5,5,0,0" Click="save_Click" RenderTransformOrigin="1.09,-4.106"/>
                 <Button Name="delete" Content="削除" Width="90" Margin="0,5,0,0" Click="delete_Click"/>
                 <Button Name="update" Content="更新" Width="90" Margin="0,5,0,0" Click="update_Click"/>
@@ -27,12 +27,12 @@
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="電話番号" Width="50" Height="15" Margin="0,5,0,0"/>
-                <TextBox x:Name="Phone" Width="230" Height="15" Margin="0,5,0,0"/>
+                <TextBox x:Name="Phone" Width="230"  Margin="0,5,0,0"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="住所" Width="50" Height="15" Margin="0,5,0,0"/>
-                <TextBox x:Name="Address" Width="230" Height="15" Margin="0,5,0,0"/>
+                <TextBox x:Name="Address" Width="230"  Margin="0,5,0,0"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -56,7 +56,7 @@
                             <TextBlock Text="{Binding Name}"/>
                             <TextBlock Text="{Binding Phone}" Foreground="Blue"/>
                             <TextBlock Text="{Binding Address}" Foreground="Green"/>
-                            <TextBlock Text="{Binding Picture}"/>
+                            <Image Source="{Binding Picture}" Width="100"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
