@@ -74,6 +74,7 @@ public partial class MainWindow : Window
     //リストビューのフィルタリング
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
         var filterList = _persons.Where(p => p.Name.Contains(SearchTextBox.Text));
+        
 
         PersonListView.ItemsSource = filterList;
         

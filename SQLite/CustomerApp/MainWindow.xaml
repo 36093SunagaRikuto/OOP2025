@@ -12,7 +12,7 @@
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="検索" Width="50" Height="20" HorizontalAlignment="Center" FontSize=" 15"/>
-                <TextBox x:Name="Searchtb"  Width="500" HorizontalAlignment="Center" FontSize="15" TextChanged="SearchTextBox_TextChanged" />
+                <TextBox x:Name="Searchtb"  Width="500" FontSize="15" TextChanged="SearchTextBox_TextChanged" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
@@ -49,7 +49,7 @@
 
             <!--//追加機能用に開けておく-->
 
-            <ListView Margin="0,5,0,0" Height="600" Name="viewview" SelectionChanged="viewview_SelectionChanged_1">
+            <ListView Margin="0,5,0,0" Height="380" Name="viewview" SelectionChanged="viewview_SelectionChanged_1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

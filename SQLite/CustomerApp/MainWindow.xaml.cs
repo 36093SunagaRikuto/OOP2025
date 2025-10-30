@@ -27,7 +27,26 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         ReadDB();
-        
+        customerset();
+    }
+
+    private void customerset() {
+        //using (var command = new SqliteCommand(query, connection)) {
+        //    using (var reader = command.ExecuteReader()) {
+        //        while (reader.Read()) {
+        //            // DataReaderからデータを読み込み、Customerオブジェクトを作成
+        //            var customer = new Customer {
+        //                Id = reader.GetInt32(0),
+        //                Name = reader.GetString(1),
+        //                Address = reader.GetString(2)
+        //                // nullを許容するカラムの場合は GetString(index) の前に DBNull.Value チェックが必要
+        //            };
+
+        //            // ObservableCollection に追加
+        //            _customer.Add(customer);
+        //        }
+        //    }
+        //}
     }
 
     private void save_Click(object sender, RoutedEventArgs e) {
@@ -51,6 +70,8 @@ public partial class MainWindow : Window
             conect.CreateTable<Customer>();
             conect.Insert(customer);
         }
+        _customer.Add(customer);
+
         Name.Text = null;
         Phone.Text = null;
         Address.Text = null;
@@ -135,6 +156,7 @@ public partial class MainWindow : Window
             
         }
 
+        
 
     }
 
@@ -142,11 +164,22 @@ public partial class MainWindow : Window
 
     }
 
-    private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e) {
-        var search = _customer.Where(p => p.Name.Contains(Searchtb.Text));
+    private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e){
+        Name.Text = null;
+        Phone.Text = null;
+        Address.Text = null;
+        picture.Source = null;
 
-        viewview.ItemsSource = search;
-        
+        //var search = _customer.Where(p => p.Name.Contains(Searchtb.Text));
+
+
+        using (var connection = new SQLiteConnection(App.databasePath)) {
+            connection.CreateTable<Customer>();
+            
+            viewview.ItemsSource = connection.Table<Customer>().ToList();
+
+        }
+
     }
 
     private void viewview_SelectionChanged_1(object sender, SelectionChangedEventArgs e) {
