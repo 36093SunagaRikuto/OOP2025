@@ -9,9 +9,16 @@ namespace Section03 {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            toolStripStatusLablel1.Text = "";
-            DoLongTimeWorkAsync(4000);
+            //toolStripStatusLablel1.Text = "";
+            //DoLongTimeWorkAsync(4000);
+            //toolStripStatusLablel1.Text = "終了";
+
+            toolStripStatusLablel1.Text = "処理中";
+            Cursor = Cursors.WaitCursor;
+            System.Threading.Thread.Sleep(10000);
             toolStripStatusLablel1.Text = "終了";
+            Cursor = Cursors.Arrow;
+
         }
 
         //戻り値のある同期メソッド

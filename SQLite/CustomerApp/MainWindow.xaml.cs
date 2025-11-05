@@ -150,10 +150,17 @@ public partial class MainWindow : Window
     }
 
     private void ReadDB() {
+        
         using (var connection = new SQLiteConnection(App.databasePath)) {
             connection.CreateTable<Customer>();
-            viewview.ItemsSource = connection.Table<Customer>().ToList();
-            
+            var tablelist = connection.Table<Customer>().ToList();
+            _customer.Clear();
+            foreach (var cust in tablelist) {
+                _customer.Add(cust);
+            }
+
+            viewview.ItemsSource = _customer;
+
         }
 
         
@@ -170,15 +177,9 @@ public partial class MainWindow : Window
         Address.Text = null;
         picture.Source = null;
 
-        //var search = _customer.Where(p => p.Name.Contains(Searchtb.Text));
+        var search = _customer.Where(p => p.Name.Contains(Searchtb.Text));
 
-
-        using (var connection = new SQLiteConnection(App.databasePath)) {
-            connection.CreateTable<Customer>();
-            
-            viewview.ItemsSource = connection.Table<Customer>().ToList();
-
-        }
+        viewview.ItemsSource = search;
 
     }
 

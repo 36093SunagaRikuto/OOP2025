@@ -53,11 +53,17 @@ public partial class MainWindow : Window
     private void ReadDB() {
         using (var connection = new SQLiteConnection(App.databasePath)) {
             connection.CreateTable<Person>();
-            PersonListView.ItemsSource = connection.Table<Person>().ToList();
+            var tablelist = connection.Table<Person>().ToList();
+            _persons.Clear();
+            foreach (var cust in tablelist) {
+                _persons.Add(cust);
+            }
+
+            PersonListView.ItemsSource = _persons;
 
         }
 
-        
+
     }
     
     private void DeleteButton_Click(object sender, RoutedEventArgs e) {
