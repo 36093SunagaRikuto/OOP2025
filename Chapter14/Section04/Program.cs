@@ -12,7 +12,7 @@ namespace Section04 {
                 "MyWikipediaCliant/1.0 (https://example.com/; contact@example.com)"
             );
 
-            var text = await GetFromWikipediaAsync(hc, "速筋");
+            var text = await GetFromWikipediaAsync(hc, "令和ロマン");
             Console.WriteLine(text);
 
         }
