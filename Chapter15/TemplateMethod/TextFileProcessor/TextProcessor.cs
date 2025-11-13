@@ -10,17 +10,23 @@ namespace TextFileProcessor {
         public static void Run<T>(string fileName) where T : TextProcessor, new() {
             var self = new T();
             self.Process(fileName);
+
+            
         }
 
         private void Process(string fileName) {
             Initialize(fileName);
-            using (var sr = new StreamReader(fileName)) {
-                while (!sr.EndOfStream) {
-                    string? line = sr.ReadLine();
-                    Execute(line!);
+            
+            var input = Console.ReadLine() ?? "";
+            using (var sr = new StreamReader(fileName, Encoding.UTF8)) {
+
+                var line = File.ReadLines(fileName);
+                foreach (var lili in line) {
+                    if (lili.Contains(input))
+                        Execute(lili);
                 }
+                Terminate();
             }
-            Terminate();
         }
 
         protected virtual void Initialize(string fname) { }

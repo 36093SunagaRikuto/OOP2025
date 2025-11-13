@@ -219,6 +219,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateMethod", "TemplateM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextFileProcessor", "Chapter15\TemplateMethod\TextFileProcessor\TextFileProcessor.csproj", "{DAB3DE16-3EE6-4CFC-8235-AC7CC3809D32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LineCounter", "Chapter15\TemplateMethod\LineCounter\LineCounter.csproj", "{99B1B997-21AA-453E-A837-09D154E980C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -513,6 +515,10 @@ Global
 		{DAB3DE16-3EE6-4CFC-8235-AC7CC3809D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAB3DE16-3EE6-4CFC-8235-AC7CC3809D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAB3DE16-3EE6-4CFC-8235-AC7CC3809D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99B1B997-21AA-453E-A837-09D154E980C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99B1B997-21AA-453E-A837-09D154E980C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99B1B997-21AA-453E-A837-09D154E980C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99B1B997-21AA-453E-A837-09D154E980C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -606,6 +612,7 @@ Global
 		{C9A1E9A5-6010-42B5-BF14-C5913B93BCDF} = {2EA82FE4-D950-4B26-A240-EECBF05C9C5D}
 		{7669B4FD-8BD3-45E9-8129-6BCFDAA318EC} = {2EA82FE4-D950-4B26-A240-EECBF05C9C5D}
 		{DAB3DE16-3EE6-4CFC-8235-AC7CC3809D32} = {7669B4FD-8BD3-45E9-8129-6BCFDAA318EC}
+		{99B1B997-21AA-453E-A837-09D154E980C8} = {7669B4FD-8BD3-45E9-8129-6BCFDAA318EC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57A57A27-F23B-47BE-8DCD-A6E02D011F7F}
