@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DistanceConverter {
+    public class MeterConverter : ConverterBase {
+        public override bool IsMyUnit(string name) =>
+            name.ToLower() == "meter" || name == UnitName;
+
+        protected override double Ratio => 1;
+        public override string UnitName => "メートル";
+
+    }
+
+    public class FeetConveter : ConverterBase {
+        public override bool IsMyUnit(string name) =>
+            name.ToLower() == "feet" || name == UnitName;
+        protected override double Ratio => 0.3048;
+        public override string UnitName => "フィート";
+    }
+
+    public class InchiConverter : ConverterBase {
+        public override bool IsMyUnit(string name) =>
+            name.ToLower() == "inchi" || name == UnitName;
+        protected override double Ratio => 0.0254;
+        public override string UnitName => "インチ";
+    }
+
+    public class YardConverter : ConverterBase {
+        public override bool IsMyUnit(string name) =>
+            name.ToLower() == "yard" || name == UnitName;
+        protected override double Ratio => 0.9144;
+        public override string UnitName => "ヤード";
+    }
+}
