@@ -5,43 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TenkiApp"
         mc:Ignorable="d"
-        WindowStyle="None"
+
         AllowsTransparency="True"
-        Background="Transparent"
         ResizeMode="CanMinimize"
-        
-        Title="MainWindow" Height="654" Width="514" >
+        Title="MainWindow" Height="602" Width="758" >
 
-    <Border CornerRadius="20" Background="#D32F2F" BorderBrush="#8B0000" BorderThickness="4">
-        <Grid>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\infosys\Desktop\weather.jpg"
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
 
-            <!-- 上部バー（赤・タイトルバー） -->
-            <Grid Height="80" VerticalAlignment="Top" Background="#E53935" >
-                <Grid Margin="10">
-                    <!-- 左上ライト -->
-                    <Ellipse Width="40" Height="40" Fill="Blue" Stroke="#B0BEC5" StrokeThickness="3" HorizontalAlignment="Left"/>
-                    <Ellipse Width="30" Height="30" Fill="Red" Stroke="#B0BEC5" StrokeThickness="3" HorizontalAlignment="Left" Margin="75,15,0,15"/>
-                    <Ellipse Width="30" Height="30" Fill="Yellow" Stroke="#B0BEC5" StrokeThickness="3" HorizontalAlignment="Left" Margin="110,15,0,15"/>
-                    <Ellipse Width="30" Height="30" Fill="Green" Stroke="#B0BEC5" StrokeThickness="3" HorizontalAlignment="Left" Margin="145,15,0,15"/>
-                    <Ellipse Width="20" Height="20" Fill="White"  StrokeThickness="6" HorizontalAlignment="Left" Margin="10,15,0,25" RenderTransformOrigin="2.686,1.447"/>
-                    
-                    
-                </Grid>
-            </Grid>
+        <Grid Width="758" Background="#33000000">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="晴れ" FontSize="50" Foreground="White" HorizontalAlignment="Center"/>
+                             
+                
+            </StackPanel>
 
-            <!-- ディスプレイ部分（中央黒画面） -->
-            <Border Margin="20,120,20,20" Background="White" CornerRadius="15" BorderBrush="#444" BorderThickness="2">
-                <Grid>
-                    <TextBlock HorizontalAlignment="Left" Margin="177,83,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Margin="255,83,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,0,0">
+                <TextBlock Text="Tokyo" FontSize="30" Foreground="White" HorizontalAlignment="Center"/>
+                <TextBlock Text="update" FontSize="14" Foreground="White" HorizontalAlignment="Center"/>
+                
+            </StackPanel>
 
-                </Grid>
-            </Border>
-
+            <TextBlock Text="禿" FontSize="100" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,30,40"/>
+            
         </Grid>
-    </Border>
-    
-    
+        
+        
+        
+        
+        
+        
+    </Grid>
+
+
 </Window>
     
     
